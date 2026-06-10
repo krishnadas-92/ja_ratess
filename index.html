@@ -6,7 +6,7 @@
 <title>Jos Alukkas — Live Rates</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#000000;
@@ -19,7 +19,7 @@
     --panel:rgba(255,255,255,0.035);
     --panel-2:rgba(255,255,255,0.05);
     --live:#33d17a;
-    --serif:'Playfair Display', 'Noto Serif', serif;
+    --serif:'Fraunces', 'Times New Roman', serif;
     --label:'Jost', sans-serif;
     --note:'Cormorant Garamond', serif;
   }
@@ -100,6 +100,13 @@
 
   /* footer */
   .foot{flex:0 0 auto;text-align:center;font-family:var(--note);font-style:italic;font-size:2vmin;color:var(--ink-soft);letter-spacing:.03em;}
+
+  /* Fraunces display look for all numbers (optical size 144, tabular figures) */
+  .clock, .hero .price, .col .price, .bar .right .price{
+    font-variation-settings:'opsz' 144;
+    font-variant-numeric:tabular-nums;
+    letter-spacing:-.015em;
+  }
 
   /* gold-coloured rate numbers for the gold karats (22K / 18K / 14K) */
   .hero .price, .col .price{
