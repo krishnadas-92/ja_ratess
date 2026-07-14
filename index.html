@@ -249,13 +249,15 @@
 
   const inr = n => '<span class="rs">\u20B9</span>' + Number(n).toLocaleString("en-IN");
 
-  // 14K is derived from the live 22K rate (14/22 karat ratio) — matches AKGSMA-based board.
-  const gold14k = () => Math.round(rates.gold22k * 14 / 22);
-  const gold24k = () => Math.round(rates.gold22k / 0.91634);   // matches josalukkas.com website 24K
+  // All karats derived from the live 22K base via the carat formula: (22K ÷ 22) × karat
+  // (same method as the ja-calculator; 18K now derived from 22K, not the AKGSMA-published 18K)
+  const gold24k = () => Math.round(rates.gold22k / 22 * 24);
+  const gold18k = () => Math.round(rates.gold22k / 22 * 18);
+  const gold14k = () => Math.round(rates.gold22k / 22 * 14);
 
   function render(){
     document.getElementById("p22").innerHTML = inr(rates.gold22k);
-    document.getElementById("p18").innerHTML = inr(rates.gold18k);
+    document.getElementById("p18").innerHTML = inr(gold18k());
     document.getElementById("p14").innerHTML = inr(gold14k());
     document.getElementById("p24").innerHTML = inr(gold24k());
     document.getElementById("pAg").innerHTML = inr(rates.silver);
