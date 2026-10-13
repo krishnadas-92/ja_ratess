@@ -249,10 +249,13 @@
 
   const inr = n => '<span class="rs">\u20B9</span>' + Number(n).toLocaleString("en-IN");
 
-  // All karats derived from the live 22K base via the carat formula: (22K ÷ 22) × karat
-  // (same method as the ja-calculator; 18K now derived from 22K, not the AKGSMA-published 18K)
-  const gold24k = () => Math.round(rates.gold22k / 22 * 24);
-  const gold18k = () => Math.round(rates.gold22k / 22 * 18);
+  // Karat logic matches the ja-calculator (as of 13 Oct 2026):
+  //   24K = 22K / 0.91634                (divisor that matches the Jos Alukkas website's 24K)
+  //   18K = AKGSMA's published 18K read straight from the sheet, used as-is (no markup),
+  //         with the carat ratio (22K / 22 * 18) kept only as a fallback if the sheet has no 18K
+  //   14K = 22K / 22 * 14                (carat ratio)
+  const gold24k = () => Math.round(rates.gold22k / 0.91634);
+  const gold18k = () => (rates.gold18k ? Math.round(rates.gold18k) : Math.round(rates.gold22k / 22 * 18));
   const gold14k = () => Math.round(rates.gold22k / 22 * 14);
 
   function render(){
